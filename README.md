@@ -3,7 +3,7 @@ This repository is an example of a project using TypeScript, React on the front,
 
 ## Installation
 ```
-git clone https://github.com/htnabe/OpenAPI-React-TypeScript-.NET-Example.git
+git clone https://github.com/htnabe/openapi-react-ts-.net-example.git
 cd ./front && npm install
 ```
 
