@@ -8,8 +8,8 @@ git clone https://github.com/htnabe/OpenAPI-React-TypeScript-.NET-Example.git
 
 ### How to start
 
-[!important]
-`devcontainer` is available. If you failed to start the project by the following way, you can use this.
+> [!IMPORTANT]
+> `devcontainer` is available. If you failed to start the project by the following way, you can use this.
 
 - Web API Server
 ```
@@ -28,4 +28,3 @@ yarn run dev
 Then,
 - web app: `localhost:5173`
 - web api: `localhost:5200`
-
