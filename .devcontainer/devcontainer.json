@@ -1,7 +1,7 @@
 {
-  "name": "Custom Ubuntu Dev Container",
+  "name": "OpenAPI example custom container",
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "postCreateCommand": "yarn global add npm-check-updates && cd front && yarn install && cd ../webapi && dotnet restore"
+  "postCreateCommand": "cd front && export COREPACK_ENABLE_DOWNLOAD_PROMPT=0 && sudo corepack enable && yarn set version stable && yarn install && cd ../webapi && dotnet restore"
 }
