@@ -14,7 +14,7 @@
 
 
 import type { Configuration } from './configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
@@ -66,7 +66,7 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWeatherForecast: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getWeatherForecast: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/weatherforecast`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -105,11 +105,11 @@ export const DefaultApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getWeatherForecast(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<WeatherForecast>>> {
+        async getWeatherForecast(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<WeatherForecast>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getWeatherForecast(options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['DefaultApi.getWeatherForecast']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DefaultApi.getWeatherForecast']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -126,7 +126,7 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWeatherForecast(options?: any): AxiosPromise<Array<WeatherForecast>> {
+        getWeatherForecast(options?: RawAxiosRequestConfig): AxiosPromise<Array<WeatherForecast>> {
             return localVarFp.getWeatherForecast(options).then((request) => request(axios, basePath));
         },
     };
@@ -145,7 +145,7 @@ export class DefaultApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DefaultApi
      */
-    public getWeatherForecast(options?: AxiosRequestConfig) {
+    public getWeatherForecast(options?: RawAxiosRequestConfig) {
         return DefaultApiFp(this.configuration).getWeatherForecast(options).then((request) => request(this.axios, this.basePath));
     }
 }

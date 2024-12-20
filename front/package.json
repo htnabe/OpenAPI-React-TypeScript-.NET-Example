@@ -7,7 +7,8 @@
     "dev": "vite --host",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "gen:client": "openapi-generator-cli generate -g typescript-axios -i ./openapi/swagger.json -o ./openapi"
   },
   "dependencies": {
     "axios": "^1.6.7",
@@ -15,6 +16,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.15.3",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^7.1.0",
